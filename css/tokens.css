@@ -1,0 +1,32 @@
+/* Design system: change colours and fonts here and the whole site follows. */
+:root {
+  --ground: #0B0B0D;      /* midnight */
+  --ground-2: #141518;    /* graphite */
+  --ground-3: #1C1D21;
+  --ink: #EEE6D6;         /* warm ivory */
+  --ink-2: #A39C8F;
+  --ink-3: #6F6A62;
+  --gold: #C9A46A;        /* muted bronze-gold */
+  --gold-soft: #E2C793;
+  --bronze: #8E6B3D;
+  --olive: #5C6B3E;       /* used only in the Respect act */
+  --olive-deep: #1A1E14;
+  --paper: #EFE7D7;
+  --paper-ink: #2A2620;
+  --hair: rgba(238, 230, 214, 0.12);
+
+  --display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --body: 'Manrope', system-ui, sans-serif;
+
+  --nav-h: 60px;
+  --gutter: clamp(16px, 5vw, 72px);
+  --max: 1280px;
+
+  /* slow, confident easing: expo-out for reveals, a soft in-out for camera moves */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-film: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --glow-gold: 0 0 14px 1px rgba(201, 164, 106, 0.55), 0 0 48px 10px rgba(201, 164, 106, 0.16);
+  --text-glow: 0 0 30px rgba(201, 164, 106, 0.35);
+}
