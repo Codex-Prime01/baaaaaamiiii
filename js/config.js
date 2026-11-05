@@ -12,7 +12,7 @@ export const config = {
 
   song: {
     src: 'assets/audio/song.mp3',
-    credit: '“Oluwa Ku’se” · Psalmos',
+    credit: '“Odaju” (Live) · BisiManuel',
   },
 
   // The opening title card. Perey's own words.
@@ -21,25 +21,34 @@ export const config = {
   // Every photo, by key. HTML elements ask for one with data-photo="key".
   // `caption` shows in the full-screen viewer. Captions never claim who else is in a picture.
   photos: {
-    'grey-kaftan': { src: 'assets/img/grey-kaftan.jpg', alt: 'Paul in a grey kaftan and clear glasses, standing in warm afternoon sun', caption: 'The man of the day' },
-    'grey-phone': { src: 'assets/img/grey-phone.jpg', alt: 'Paul in a grey kaftan, looking down at his phone', caption: 'Always reading something' },
-    'white-tee': { src: 'assets/img/white-tee.jpg', alt: 'Paul in a white T-shirt, standing outside a building', caption: 'Easy, as always' },
-    'bench-tall': { src: 'assets/img/bench-tall.jpg', alt: 'Paul sitting on a bench beside a home-made barbell', caption: 'Strength is built in plain places' },
-    'bench-seated': { src: 'assets/img/bench-seated.jpg', alt: 'Paul seated on a wooden bench, hands clasped, smiling', caption: 'Sit down, let’s talk' },
-    'shades-pose': { src: 'assets/img/shades-pose.jpg', alt: 'Paul in sunglasses and a dark T-shirt, one hand in his pocket', caption: 'Confidence, quietly' },
-    'arms-crossed': { src: 'assets/img/arms-crossed.jpg', alt: 'Paul in sunglasses with his arms crossed', caption: 'Steady' },
-    'cap-boots': { src: 'assets/img/cap-boots.jpg', alt: 'Paul in a black cap, black T-shirt and boots', caption: 'Discipline' },
-    'training-gloves': { src: 'assets/img/training-gloves.jpg', alt: 'Paul in a striped vest and work gloves on a dirt track', caption: 'The work nobody claps for' },
-    'thumbs-up': { src: 'assets/img/thumbs-up.jpg', alt: 'Paul in sunglasses, smiling and giving two thumbs up', caption: 'Here’s to another year' },
-    'three-brothers': { src: 'assets/img/three-brothers.jpg', alt: 'Paul in a camo-print shirt, standing between two friends', caption: 'Among brothers' },
-    'selfie-duo': { src: 'assets/img/selfie-duo.jpg', alt: 'A selfie of two young men outside a house', caption: 'Same ground, same sun' },
-    'cadets': { src: 'assets/img/cadets.jpg', alt: 'Paul smiling wide among a group of young cadets in uniform', caption: 'That smile' },
-    'wedding-white': { src: 'assets/img/wedding-white.jpg', alt: 'Paul in a white tuxedo jacket with his bride on their wedding day', caption: 'Husband' },
-    'wedding-traditional': { src: 'assets/img/wedding-traditional.jpg', alt: 'Paul in green traditional attire with his bride', caption: 'Tradition, honoured' },
-    'wedding-registry': { src: 'assets/img/wedding-registry.jpg', alt: 'Paul with his bride at the marriage registry', caption: 'At the registry' },
-    'family-group': { src: 'assets/img/family-group.jpg', alt: 'Paul in a white kaftan with three women outside a house', caption: 'Family' },
-    'home-elder': { src: 'assets/img/home-elder.jpg', alt: 'Paul with his arm around an older woman', caption: 'Home' },
+    'grey-kaftan': { src: 'assets/img/grey-kaftan.jpg', alt: 'Paul in a grey kaftan and clear glasses, standing in warm afternoon sun', caption: 'The man of the day', tag: 'him' },
+    'grey-phone': { src: 'assets/img/grey-phone.jpg', alt: 'Paul in a grey kaftan, looking down at his phone', caption: 'Always reading something', tag: 'him' },
+    'white-tee': { src: 'assets/img/white-tee.jpg', alt: 'Paul in a white T-shirt, standing outside a building', caption: 'Easy, as always', tag: 'him' },
+    'bench-tall': { src: 'assets/img/bench-tall.jpg', alt: 'Paul sitting on a bench beside a home-made barbell', caption: 'Strength is built in plain places', tag: 'him' },
+    'bench-seated': { src: 'assets/img/bench-seated.jpg', alt: 'Paul seated on a wooden bench, hands clasped, smiling', caption: 'Sit down, let’s talk', tag: 'him' },
+    'shades-pose': { src: 'assets/img/shades-pose.jpg', alt: 'Paul in sunglasses and a dark T-shirt, one hand in his pocket', caption: 'Confidence, quietly', tag: 'him' },
+    'arms-crossed': { src: 'assets/img/arms-crossed.jpg', alt: 'Paul in sunglasses with his arms crossed', caption: 'Steady', tag: 'service' },
+    'cap-boots': { src: 'assets/img/cap-boots.jpg', alt: 'Paul in a black cap, black T-shirt and boots', caption: 'Discipline', tag: 'service' },
+    'training-gloves': { src: 'assets/img/training-gloves.jpg', alt: 'Paul in a striped vest and work gloves on a dirt track', caption: 'The work nobody claps for', tag: 'service' },
+    'thumbs-up': { src: 'assets/img/thumbs-up.jpg', alt: 'Paul in sunglasses, smiling and giving two thumbs up', caption: 'Here’s to another year', tag: 'service' },
+    'three-brothers': { src: 'assets/img/three-brothers.jpg', alt: 'Paul in a camo-print shirt, standing between two friends', caption: 'Among brothers', tag: 'brotherhood' },
+    'selfie-duo': { src: 'assets/img/selfie-duo.jpg', alt: 'A selfie of two young men outside a house', caption: 'Same ground, same sun', tag: 'brotherhood' },
+    'cadets': { src: 'assets/img/cadets.jpg', alt: 'Paul smiling wide among a group of young cadets in uniform', caption: 'That smile', tag: 'brotherhood' },
+    'wedding-white': { src: 'assets/img/wedding-white.jpg', alt: 'Paul in a white tuxedo jacket with his bride on their wedding day', caption: 'Husband', tag: 'family' },
+    'wedding-traditional': { src: 'assets/img/wedding-traditional.jpg', alt: 'Paul in green traditional attire with his bride', caption: 'Tradition, honoured', tag: 'family' },
+    'wedding-registry': { src: 'assets/img/wedding-registry.jpg', alt: 'Paul with his bride at the marriage registry', caption: 'At the registry', tag: 'family' },
+    'family-group': { src: 'assets/img/family-group.jpg', alt: 'Paul in a white kaftan with three women outside a house', caption: 'Family', tag: 'family' },
+    'home-elder': { src: 'assets/img/home-elder.jpg', alt: 'Paul with his arm around an older woman', caption: 'Home', tag: 'family' },
   },
+
+  // The gallery's filter buttons: [tag, label]. Every photo's `tag` above matches one of these.
+  galleryTags: [
+    ['all', 'Everything'],
+    ['him', 'Him'],
+    ['brotherhood', 'Brotherhood'],
+    ['service', 'Service'],
+    ['family', 'Family'],
+  ],
 
   // Act II: the words that sum him up. Each one gets its own photo.
   qualities: [
@@ -101,7 +110,7 @@ export const config = {
     ['Also known as', 'Baami · Oga mi'],
     ['Starring', 'Paul, as himself'],
     ['Written & built by', 'His younger brother, Perey'],
-    ['Music', '“Oluwa Ku’se” · Psalmos'],
+    ['Music', '“Odaju” (Live) · BisiManuel'],
     ['Filmed on', 'Ordinary days'],
   ],
 };

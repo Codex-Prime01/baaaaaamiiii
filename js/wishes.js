@@ -1,4 +1,4 @@
-// Ten wish cards. Each one lights up as it scrolls in; tap (or Enter) turns it over.
+// Ten wish cards. They swing in as you scroll (see choreo.js); tap (or Enter) turns one over.
 
 import { audio } from './audio.js';
 
@@ -9,8 +9,6 @@ export function initWishes(wishes) {
   grid.replaceChildren(...wishes.map((w, i) => {
     const li = document.createElement('li');
     li.className = 'wish-item';
-    li.dataset.reveal = '';
-    li.style.setProperty('--d', `${(i % 5) * 90}ms`);
     li.innerHTML = `
       <button class="wish" type="button" aria-pressed="false">
         <span class="wish-inner">

@@ -4,6 +4,7 @@
 
 import { reducedMotion } from './motion.js';
 import { audio } from './audio.js';
+import { lock, unlock } from './scroll.js';
 
 const pad = (n) => String(n).padStart(2, '0');
 
@@ -13,7 +14,6 @@ export function initViewer(photos) {
   const count = document.getElementById('viewer-count');
   const cap = document.getElementById('viewer-cap');
   const closeBtn = document.getElementById('viewer-close');
-  const html = document.documentElement;
 
   // every viewable photo, in page order, each one once
   const keys = [...new Set([...document.querySelectorAll('img[data-viewer]')].map((img) => img.dataset.photo))]
@@ -57,7 +57,7 @@ export function initViewer(photos) {
     open = true;
     returnFocus = document.activeElement;
     viewer.hidden = false;
-    html.classList.add('is-locked');
+    lock();
     addPhoto(0);
     audio.chime(true);
     requestAnimationFrame(() => viewer.classList.add('is-open'));
@@ -70,7 +70,7 @@ export function initViewer(photos) {
     viewer.classList.remove('is-open');
     setTimeout(() => {
       viewer.hidden = true;
-      html.classList.remove('is-locked');
+      unlock();
       returnFocus?.focus({ preventScroll: true });
     }, reducedMotion ? 0 : 450);
   }

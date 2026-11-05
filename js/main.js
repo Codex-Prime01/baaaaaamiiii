@@ -1,15 +1,19 @@
-// Boot: put the content from config.js into the page, then start every part of the film.
+// Boot: fill the page from config.js, build the repeated parts, then start the motion,
+// the gallery, the viewer, the sound and finally the opening titles.
 
 import { config } from './config.js';
-import { reducedMotion } from './motion.js';
 import { audio } from './audio.js';
-import { initReveal, release } from './reveal.js';
 import { initFx } from './fx.js';
+import { initScroll } from './scroll.js';
 import { initIntro } from './intro.js';
-import { initScenes } from './scenes.js';
+import { buildMarquee, buildDossier, buildReel, buildMoments, buildCredits } from './build.js';
+import { initChoreo } from './choreo.js';
+import { initDossier } from './dossier.js';
+import { initGallery } from './gallery.js';
 import { initViewer } from './viewer.js';
 import { initLetter } from './letter.js';
 import { initWishes } from './wishes.js';
+import { initCursor } from './cursor.js';
 
 const $ = (s) => document.querySelector(s);
 
@@ -30,19 +34,6 @@ function renderContent() {
     // decorative copies (blurred backgrounds, the intro) keep an empty alt
     if (img.getAttribute('aria-hidden') !== 'true' && !img.closest('[aria-hidden="true"]')) img.alt = p.alt;
   });
-
-  $('#credits-list').replaceChildren(...config.credits.map(([role, name], i) => {
-    const row = document.createElement('div');
-    row.dataset.reveal = '';
-    row.style.setProperty('--d', `${i * 120}ms`);
-    const dt = document.createElement('dt');
-    dt.className = 'label';
-    dt.textContent = role;
-    const dd = document.createElement('dd');
-    dd.textContent = name;
-    row.append(dt, dd);
-    return row;
-  }));
 }
 
 function initSoundButton() {
@@ -57,7 +48,7 @@ function initSoundButton() {
   };
   btn.addEventListener('click', () => {
     if (!audio.started) {
-      // first tap: if they'd muted it before, this tap means "I want sound now"
+      // first tap: if they'd muted it on an earlier visit, this tap means "I want sound now"
       if (audio.muted) audio.toggle();
       audio.start(config.song.src);
     } else {
@@ -69,22 +60,38 @@ function initSoundButton() {
 }
 
 renderContent();
-initScenes(config);
-initLetter(config.letter);
+buildMarquee([config.nickname, config.nickname2, 'Brother', config.birthdayShort]);
+buildDossier(config.qualities, config.photos);
+buildReel(config.reel, config.photos);
+buildMoments(config.moments, config.photos);
+buildCredits(config.credits);
 initWishes(config.wishes);
-initReveal();
+initLetter(config.letter);
+initScroll();
+
+// SplitText measures lines, so the real fonts must be in first (but never wait forever)
+await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]);
+
+const galleryItems = initGallery(config.photos, config.galleryTags, {
+  animateIn: (items) => choreo?.galleryIn(items),
+  animateOut: (items) => choreo?.galleryOut(items),
+});
+const choreo = initChoreo();
+if (!choreo) console.warn('GSAP did not load, so the page is showing without its animations.');
+choreo?.galleryIn(galleryItems, { onScroll: true });
+
+initDossier({ onChange: (card) => choreo?.dossierCard(card) });
 initViewer(config.photos);
 initFx($('#fx'));
+initCursor();
 initSoundButton();
 
-const hero = $('#top');
 const intro = initIntro({
   lines: config.intro,
+  images: Object.values(config.photos).map((p) => p.src),
   onBegin: () => audio.start(config.song.src), // the Begin tap counts as permission to play sound
-  onDone: () => release(hero),
+  onDone: () => { choreo?.heroIn(); choreo?.refresh(); },
 });
-// if motion is reduced, the hero shouldn't wait for anything
-if (reducedMotion) release(hero);
 
 $('#replay').addEventListener('click', () => intro.replay());
 

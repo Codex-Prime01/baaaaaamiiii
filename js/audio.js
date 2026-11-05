@@ -128,7 +128,19 @@ function startMusic(src) {
   song.preload = 'auto';
   song.addEventListener('error', () => fallback(song.error), { once: true });
   ctx.createMediaElementSource(song).connect(musicBus);
-  song.play().catch(fallback);
+  song.play().catch((err) => {
+    // Blocked by the browser's autoplay rules (not a broken file): try again on the next tap or key.
+    if (err?.name === 'NotAllowedError') {
+      const retry = () => {
+        ctx.resume();
+        song.play().catch(fallback);
+      };
+      addEventListener('pointerdown', retry, { once: true });
+      addEventListener('keydown', retry, { once: true });
+      return;
+    }
+    fallback(err);
+  });
 }
 
 const ready = () => ctx && !muted;
