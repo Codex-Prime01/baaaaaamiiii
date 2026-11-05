@@ -92,6 +92,7 @@ export function initIntro({ lines, images, onBegin, onDone }) {
       setTimeout(sequence, reducedMotion ? 0 : 500);
     };
     loaded.then(() => { target = 1; });
+    setTimeout(() => { target = 1; }, 8000); // on a very slow connection, don't hold the film hostage
     requestAnimationFrame(tick);
   }
 

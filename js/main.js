@@ -88,7 +88,8 @@ initSoundButton();
 
 const intro = initIntro({
   lines: config.intro,
-  images: Object.values(config.photos).map((p) => p.src),
+  // only wait for the photos seen first; the rest load lazily as you scroll
+  images: ['grey-kaftan', 'grey-phone', 'white-tee', 'bench-tall', 'bench-seated'].map((k) => config.photos[k].src),
   onBegin: () => audio.start(config.song.src), // the Begin tap counts as permission to play sound
   onDone: () => { choreo?.heroIn(); choreo?.refresh(); },
 });
